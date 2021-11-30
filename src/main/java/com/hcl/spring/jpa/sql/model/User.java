@@ -1,24 +1,24 @@
-package com.hcl.spring.jpa.h2.model;
+package com.hcl.spring.jpa.sql.model;
 
-import lombok.Data;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
-@Data   // useful annotation to reduce boilerplate getter/setter
+@Table(name = "users_table")
+//@Data   // useful annotation to reduce boilerplate getter/setter
 public class User {
     // -----------------------------------------
     //    ATTRIBUTES
     // -----------------------------------------
     //  MINIMUM SPEC
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="user_id")
     private long userId;
 
     @NonNull
-    @Column(name = "email")
+//    @Column(name = "email")
     private String email;
 
     @NonNull
@@ -33,10 +33,10 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "firstname")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastname")
+    @Column(name = "last_name")
     private String lastName;
     //	//    The target destination supplied by Destination service
 //	@Column(name = "destination")

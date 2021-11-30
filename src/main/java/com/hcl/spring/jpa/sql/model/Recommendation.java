@@ -1,4 +1,4 @@
-package com.hcl.spring.jpa.h2.model;
+package com.hcl.spring.jpa.sql.model;
 
 import lombok.Data;
 

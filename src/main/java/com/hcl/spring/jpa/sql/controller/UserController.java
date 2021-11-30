@@ -1,10 +1,10 @@
-package com.hcl.spring.jpa.h2.controller;
+package com.hcl.spring.jpa.sql.controller;
 
-import com.hcl.spring.jpa.h2.model.Destination;
-import com.hcl.spring.jpa.h2.model.Recommendation;
-import com.hcl.spring.jpa.h2.model.Review;
-import com.hcl.spring.jpa.h2.model.User;
-import com.hcl.spring.jpa.h2.repository.UserRepository;
+import com.hcl.spring.jpa.sql.model.Destination;
+import com.hcl.spring.jpa.sql.model.Recommendation;
+import com.hcl.spring.jpa.sql.model.Review;
+import com.hcl.spring.jpa.sql.model.User;
+import com.hcl.spring.jpa.sql.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -46,7 +46,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users?={id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
         Optional<User> userData = userRepository.findById(id);
 
@@ -60,7 +60,6 @@ public class UserController {
     /**
      * CREATE method for a User requiring an EMAIL and PASSWORD
      * TODO: is `.../register` appropriate? or just `.../users` is enough?
-     * @param user
      * @return
      */
     @PostMapping("/users/register")
@@ -97,7 +96,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PutMapping("/users/{id}")
+    @PutMapping("/users?={id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         Optional<User> userData = userRepository.findById(id);
         System.out.println(userData);
@@ -126,7 +125,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/users?={id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
         try {
             userRepository.deleteById(id);

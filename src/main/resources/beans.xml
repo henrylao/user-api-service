@@ -3,16 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="review" class="com.hcl.spring.jpa.h2.model.Review">
+    <bean id="review" class="com.hcl.spring.jpa.sql.model.Review">
 
 
     </bean>
 
-    <bean id="destination" class="com.hcl.spring.jpa.h2.model.Review">
+    <bean id="destination" class="com.hcl.spring.jpa.sql.model.Review">
 
     </bean>
 
-    <bean id="recommendation" class="com.hcl.spring.jpa.h2.model.Review">
+    <bean id="recommendation" class="com.hcl.spring.jpa.sql.model.Review">
 
 
     </bean>

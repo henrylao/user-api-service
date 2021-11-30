@@ -1,4 +1,4 @@
-package com.hcl.spring.jpa.h2;
+package com.hcl.spring.jpa.sql;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

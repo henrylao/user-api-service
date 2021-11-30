@@ -13,7 +13,11 @@ mvn spring-boot:run
 - [Click here](http://localhost:8080/api-docs/) following for a JSON REST API view 
 - [Click here](http://localhost:8080/swagger-ui-custom.html) following for an improved UI of the REST API documentation 
 
-
+## Maven Setup
+```
+mvn clean
+mvn compile
+```
 
 
 ## References
