@@ -1,11 +1,13 @@
 package com.hcl.spring.jpa.h2.model;
 
+import lombok.Data;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@Data   // useful annotation to reduce boilerplate getter/setter
 public class User {
     // -----------------------------------------
     //    ATTRIBUTES
@@ -18,12 +20,12 @@ public class User {
     @NonNull
     @Column(name = "email")
     private String email;
-    @NonNull
 
+    @NonNull
     @Column(name = "password")
     private String password;
-    @NonNull
 
+    @NonNull
     @Column(name = "is_admin")
     private boolean isAdmin;
 
@@ -33,8 +35,6 @@ public class User {
 
     @Column(name = "firstname")
     private String firstName;
-
-
 
     @Column(name = "lastname")
     private String lastName;
@@ -63,7 +63,6 @@ public class User {
     }
 
     public User(@NonNull String email, @NonNull String password, boolean isAdmin, @NonNull String username) {
-//        this.id = id;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
@@ -127,6 +126,7 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     @Override
     public String toString() {
         return "User{" +

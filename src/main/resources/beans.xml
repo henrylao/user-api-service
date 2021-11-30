@@ -8,4 +8,13 @@
 
     </bean>
 
+    <bean id="destination" class="com.hcl.spring.jpa.h2.model.Review">
+
+    </bean>
+
+    <bean id="recommendation" class="com.hcl.spring.jpa.h2.model.Review">
+
+
+    </bean>
+
 </beans>

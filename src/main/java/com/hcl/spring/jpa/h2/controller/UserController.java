@@ -59,7 +59,7 @@ public class UserController {
 
     /**
      * CREATE method for a User requiring an EMAIL and PASSWORD
-     *
+     * TODO: is `.../register` appropriate? or just `.../users` is enough?
      * @param user
      * @return
      */
@@ -88,26 +88,6 @@ public class UserController {
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-
-
-//    @PostMapping("/users/register")
-//    public ResponseEntity<User> createUser(@RequestBody Map<String, Object> userMap) {
-//        try {
-//            String email, password, username;
-//            Boolean isAdmin;
-//            email = (String) userMap.get("email");
-//            username = (String) userMap.get("username");
-//            password = (String) userMap.get("password");
-//            isAdmin = (boolean) userMap.get("isAdmin");
-//            User _user = userRepository
-//                    .save(new User(email, password, isAdmin, username));
-//            return new ResponseEntity<>(_user, HttpStatus.CREATED);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//
-//
-//    }
 
     /**
      * UPDATE method for USER entities
@@ -157,7 +137,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users")
-    public ResponseEntity<HttpStatus> deleteAllTutorials() {
+    public ResponseEntity<HttpStatus> deleteAllUsers() {
         try {
             userRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -167,6 +147,12 @@ public class UserController {
 
     }
 
+    /**
+     * Method for ping a particular service at a specific port for testing
+     * @param port
+     * @param resourceName
+     * @return
+     */
     private HttpEntity<? extends Object> pingHelper(Integer port, String resourceName) {
         try {
             // TODO: NOTE endpoint formatting is subject to change, this is for basic integration testing

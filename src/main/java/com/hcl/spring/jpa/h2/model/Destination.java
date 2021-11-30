@@ -1,7 +1,8 @@
 package com.hcl.spring.jpa.h2.model;
 
-import java.awt.*;
+import lombok.Data;
 
+@Data
 public class Destination {
     long destId;
     String country, place;
