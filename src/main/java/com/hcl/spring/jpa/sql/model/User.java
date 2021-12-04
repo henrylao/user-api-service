@@ -33,9 +33,11 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @NonNull
     @Column(name = "first_name")
     private String firstName;
 
+    @NonNull
     @Column(name = "last_name")
     private String lastName;
     //	//    The target destination supplied by Destination service
@@ -58,16 +60,27 @@ public class User {
 
     }
 
-    public User(@NonNull String email, @NonNull String password, boolean isAdmin) {
-        this(email, password, false, "");
+    public User(@NonNull String email,
+                @NonNull String password, boolean isAdmin) {
+        this(email, password, false, null, null, null);
     }
 
-    public User(@NonNull String email, @NonNull String password, boolean isAdmin, @NonNull String username) {
+    public User(@NonNull String email,
+                @NonNull String password,
+                boolean isAdmin,
+                @NonNull String username,
+                @NonNull String firstName,
+                @NonNull String lastName) {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
         this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
+
+//    public User(String email, String password, String firstName, String lastName, boolean admin) {
+//    }
 
     // -----------------------------------------
     //    GETTERS / SETTERS
@@ -127,16 +140,31 @@ public class User {
         this.lastName = lastName;
     }
 
+//    @Override
+
     @Override
     public String toString() {
         return "User{" +
-                "id=" + userId +
+                "userId=" + userId +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", isAdmin=" + isAdmin +
                 ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
+//    public String toString() {
+//        return "User{" +
+//                "id=" + userId +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", isAdmin=" + isAdmin +
+//                ", username='" + username + '\'' +
+//                ", username='" + username + '\'' +
+//                ", username='" + username + '\'' +
+//                '}';
+//    }
 }
 
 //	// -----------------------------------------
