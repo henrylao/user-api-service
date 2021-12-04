@@ -15,7 +15,8 @@
 	<description>UserService integrating RecommendService, ReviewService, DestinationService</description>
 
 	<properties>
-		<java.version>16</java.version>
+		<!-- <java.version>16</java.version> -->
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
