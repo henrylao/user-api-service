@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@CrossOrigin(origins = "http://localhost:8081")
+//@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -46,20 +46,19 @@ public class UserController {
         }
     }
 
-    @GetMapping("/users?={id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
-        Optional<User> userData = userRepository.findById(id);
+    @GetMapping("/users/{user_id}")
+    public ResponseEntity<User> getUserById(@PathVariable("user_id") long user_id) {
+        Optional<User> userData = userRepository.findById(user_id);
 
-        if (userData.isPresent()) {
-            return new ResponseEntity<>(userData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return userData.map(
+                user -> new ResponseEntity<>(user, HttpStatus.OK)
+        ).orElseGet(
+                () -> new ResponseEntity<>(HttpStatus.NOT_FOUND)
+        );
     }
 
     /**
      * CREATE method for a User requiring an EMAIL and PASSWORD
-     * TODO: is `.../register` appropriate? or just `.../users` is enough?
      * @return
      */
     @PostMapping("/users/register")
@@ -72,9 +71,25 @@ public class UserController {
             if (!isValidPassword(user.getPassword()) && !DEBUG) {
                 return new ResponseEntity<>(null, HttpStatus.PRECONDITION_FAILED);
             }
-
+            User newUser =                             new User(
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.isAdmin(),
+                    user.getUsername(),
+                    user.getFirstName(),
+                    user.getLastName());
+            System.out.println(newUser);
             User _user = userRepository
-                    .save(new User(user.getEmail(), user.getPassword(), false));
+                    .save(
+                            new User(
+                                    user.getEmail(),
+                                    user.getPassword(),
+                                    user.isAdmin(),
+                                    user.getUsername(),
+                                    user.getFirstName(),
+                                    user.getLastName()
+                            ));
+
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -96,7 +111,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PutMapping("/users?={id}")
+    @PutMapping("/users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         Optional<User> userData = userRepository.findById(id);
         System.out.println(userData);
@@ -109,9 +124,10 @@ public class UserController {
             _user.setUsername(user.getUsername());
 
             // STRETCH
+            System.out.println(user.getFirstName());
             _user.setFirstName(user.getFirstName());
             _user.setLastName(user.getLastName());
-
+//            System.out.println(_user);
 //			_user.setDestination(user.getDestination());
 //			_user.setReviews(user.getReviews());
 //			_user.setRecommendations(user.getRecommendations());
